@@ -7,6 +7,7 @@ local cache = {}
 ---@type table<string,string>
 local tcache = {}
 local cache_leaders = ""
+local auto_popup = true
 
 function M.check_cache()
   ---@type string
@@ -175,6 +176,21 @@ function M.parse_internal(keystr)
     end
   end
   return keys
+end
+
+function M.toggle_auto_popup()
+  if auto_popup then
+    auto_popup = false
+    print("WhichKey popup disabled")
+    return
+  end
+  
+  auto_popup = true
+  print("WhichKey popup enabled")
+end
+
+function M.is_toggled()
+  return auto_popup
 end
 
 function M.warn(msg)

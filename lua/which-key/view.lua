@@ -256,6 +256,10 @@ function M.open(keys, opts)
 end
 
 function M.is_enabled(buf)
+  if not Util.is_toggled() then
+    return false
+  end
+
   local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
   for _, bt in ipairs(config.options.disable.buftypes) do
     if bt == buftype then
@@ -305,7 +309,7 @@ function M.on_keys(opts)
 
     local layout = Layout:new(results)
 
-    if M.is_enabled(buf) then
+    if M.is_enabled(buf, opts) then
       if not M.is_valid() then
         M.show()
       end

@@ -49,6 +49,11 @@ function M.show(keys, opts)
   require("which-key.view").open(keys, opts)
 end
 
+function M.toggle_auto_popup()
+  Util.toggle_auto_popup()
+end
+
+
 function M.show_command(keys, mode)
   keys = keys or ""
   keys = (keys == '""' or keys == "''") and "" or keys
